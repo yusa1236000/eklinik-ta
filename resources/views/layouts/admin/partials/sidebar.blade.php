@@ -9,7 +9,7 @@
                     </span>
                 </button>
             </div>
-        </div>
+    </div>
     </div>
     <div class="app-header__mobile-menu">
         <div>
@@ -132,27 +132,27 @@
                 @role('bidan')
                 <li class="app-sidebar__heading">Data Bidan</li>
                 <li>
-                    <a href="{{ route('queue.index') }}" class="@if (Request::is('antrian*')) mm-active @endif">
-                        <i class="metismenu-icon fa fa-clipboard-list"></i>
+                    <a href="{{ route('pregnantmom.index') }}" class="@if (Request::is('ibu-hamil*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-portrait"></i>
                         Data Ibu Hamil
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('queue.drug') }}" class="@if (Request::is('antri/*')) mm-active @endif">
+                    <a href="{{ route('immunization.index') }}" class="@if (Request::is('imunisasi*')) mm-active @endif">
                         <i class="metismenu-icon fa fa-clipboard"></i>
                         Data Imunisasi
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('patient.index') }}" class="@if (Request::is('pasien*')) mm-active @endif">
-                        <i class="metismenu-icon fa fa-portrait"></i>
+                    <a href="{{ route('familyplanning.index') }}" class="@if (Request::is('keluargaberencana*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-clipboard-list"></i>
                         Data Keluarga Berencana
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('medicalrecord.index') }}" class="@if (Request::is('rekam-medis*')) mm-active @endif">
                         <i class="metismenu-icon fa fa-notes-medical"></i>
-                        Data Persalinan
+                        Data BPJS
                     </a>
                 </li>
                 <li>

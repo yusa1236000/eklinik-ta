@@ -1,7 +1,7 @@
 <tr>
     <td>{{$patient->nik ?? "-"}}</td>
     <td>{{$patient->name}}</td>
-    <td>{{\Carbon\Carbon::parse($patient->birth_date)->diffInYears()}}</td>
+    <td>{{$patient->birth_date}}</td>
     <td>{{$patient->gender}}</td>
     <td>{{$patient->address}}</td>
     <td>{{$patient->phone_number}}</td>
@@ -14,3 +14,9 @@
         </a>
     </td>
 </tr>
+@push("js")
+<script>
+    var years = moment().diff($patient->birth_date, 'years');
+    console.log(years)
+</script>
+@endpush

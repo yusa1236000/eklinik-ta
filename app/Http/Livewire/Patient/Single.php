@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Patient;
 
 use App\Models\Patient;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Single extends Component
 {
@@ -11,6 +12,7 @@ class Single extends Component
 
     public function mount(Patient $patient){
         $this->patient = $patient;
+        $this->patient->birth_date = Carbon::parse($patient->birth_date)->age;
     }
 
     public function delete(){

@@ -5,6 +5,9 @@ use App\Http\Livewire\Drug\Create;
 use App\Http\Livewire\Drug\Index;
 use App\Http\Livewire\Lab\Create as LabCreate;
 use App\Http\Livewire\Lab\Index as LabIndex;
+use App\Models\Immunization;
+use App\Models\Familyplanning;
+use App\Models\Pregnantmom;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +30,17 @@ $list_menu = [
     'room' => 'ruangan',
     'diagnosis' => 'diagnosis',
     'queue' => 'antrian',
-    'service' => 'layanan'
+    'service' => 'layanan',
+    'pregnantmom' => 'ibu-hamil',
+    'familyplanning' => 'keluargaberencana',
+    'immunization' => 'imunisasi'
 ];
 
+
 Route::middleware(['auth:web'])->group(function () use ($list_menu) {
+    Route::get('/show/{immunization}', \App\Http\Livewire\Immunization\Show::class)->name('immunization.show');
+    Route::get('/show/{pregnantmom}', \App\Http\Livewire\Pregnantmom\Show::class)->name('pregnantmom.show');
+
     Route::get('/', function () {
         return view('welcome');
     })->name('home');
@@ -59,3 +69,5 @@ Route::group(['prefix' => 'select'], function () {
     Route::get('doctor', [SelectController::class, 'doctor'])->name('select.doctor');
     Route::get('service', [SelectController::class, 'service'])->name('select.service');
 });
+
+// Route::get('/greet', 'UserController@greet');

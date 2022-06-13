@@ -19,7 +19,7 @@ class PatientController extends Controller
         //
         $patient = Patient::query()->get();
         if (count($patient) == 0) {
-            return response()->json(["message" => "Dokter Kosong"]);
+        return response()->json(["message" => "Patient Kosong"]);
         }
         return response()->json($patient);
     }
@@ -91,6 +91,34 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $patient = Patient::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'nik' => 'required',
+            'gender' => 'required',
+            'birth_date' => 'required',
+            'address' => 'required',
+            'profession' => 'required',
+            'study' => 'required',
+            'bpjs_number' => 'required',
+            'phone_number' => 'required',
+            'allergy' => 'required'
+        ]);
+        $patient->update([
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
+            'address' => $request->address,
+            'profession' => $request->profession,
+            'study' => $request->study,
+            'bpjs_number' => $request->bpjs_number,
+            'phone_number' => $request->phone_number,
+            'allergy' => $request->allergy
+        ]);
+
+        return response()->json($patient);
     }
 
     /**
@@ -99,14 +127,18 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    // public function destroy(Request $request)
+    // {
+    //     //
+    //     $id = $request->input('id');
+    //     Patient::find('id')->delete();
+        
+    // }
+    public function destroy($id)
     {
         //
-        $patient->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Product deleted successfully.",
-        "data" => $patient
-        ]);
+        $patient = Patient::find($id)->delete();
+        return response()->json($patient);
+        
     }
 }
