@@ -14,6 +14,7 @@ class Single extends Component
     }
 
     public function delete(){
+        // unlink(public_path('storage/' . $this->identity_card));
         $this->bpjs->delete();
         $this->emit('bpjsDeleted');
     }
