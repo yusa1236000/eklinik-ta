@@ -65,7 +65,7 @@ class Create extends Component
             ]);
             $this->dispatchBrowserEvent('show-message', [
                 'type' => 'success',
-                'message' => 'sukses bos '
+                'message' => 'Sukses menambah data '
             ]);
             $this->redirectRoute('queue.index');
         }else{

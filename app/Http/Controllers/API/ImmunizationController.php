@@ -65,7 +65,11 @@ class ImmunizationController extends Controller
      */
     public function show($id)
     {
-        //
+        $immunization = Immunization::where('id', $id)->first();
+        if (!$immunization) {
+        return response()->json(["message" => "Imunisasi tidak ditemukan"]);
+        }
+        return response()->json($immunization);
     }
 
     /**

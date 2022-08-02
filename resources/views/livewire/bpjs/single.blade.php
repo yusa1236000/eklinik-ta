@@ -1,9 +1,9 @@
 <tr>
-    <td>{{$bpjs->no ?? "-"}}</td>
+    <td>{{$bpjs->id ?? "-"}}</td>
     <td>{{$bpjs->name}}</td>
-    <td>{{$bpjs->identity_card}}</td>
-    <td>{{$bpjs->family_card}}</td>
-    <td>{{$bpjs->bpjs_card}}</td>
+    <td><img src="{{ asset('storage') }}/{{ $bpjs->identity_card }}" width="100" alt=""></td>
+    <td><img src="{{ asset('storage') }}/{{ $bpjs->family_card }}" width="100" alt=""></td>
+    <td><img src="{{ asset('storage') }}/{{ $bpjs->bpjs_card }}" width="100" alt=""></td>
     <td>
         <a wire:click="delete" class="btn text-danger">
             <i class="fa fa-trash fa-1x"></i>

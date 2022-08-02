@@ -53,7 +53,7 @@ class Update extends Component
 
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('Berhasil memperbarui data', ['name' => __('Article') ]) ]);
 
-        $this->immunization->update([
+        $this->pregnantmom->update([
             'name' => $this->name,
             'age' => $this->age,
             'address' => $this->address,
@@ -74,7 +74,7 @@ class Update extends Component
     }
     public function mount(Pregnantmom $pregnantmom)
     {
-        $this->$pregnantmom = $pregnantmom;
+        $this->pregnantmom = $pregnantmom;
         $this->name = $pregnantmom->name;
         $this->age = $pregnantmom->age;
         $this->address = $pregnantmom->address;

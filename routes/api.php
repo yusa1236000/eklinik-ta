@@ -33,15 +33,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //ROUTE WEB SERVICE//
 
 Route::resource('patient', PatientController::class)->middleware('auth:sanctum');
-Route::resource('doctors', DoctorController::class)->middleware('auth:sanctum');
-Route::resource('drugs', DrugController::class)->middleware('auth:sanctum');
-Route::resource('lab', LabController::class)->middleware('auth:sanctum');
-Route::resource('room', RoomController::class)->middleware('auth:sanctum');
-Route::resource('diagnosis', DiagnosisController::class)->middleware('auth:sanctum');
-Route::resource('service', ServiceController::class)->middleware('auth:sanctum');
-Route::resource('antrian', QueueController::class)->middleware('auth:sanctum');
-Route::resource('immunization', ImmunizationController::class)->middleware('auth:sanctum');
-Route::resource('familyplanning',FamilyplanningController::class)->middleware('auth:sanctum');
+Route::resource('doctors', DoctorController::class, ['as' => 'doctors.api'])->middleware('auth:sanctum');
+Route::resource('drugs', DrugController::class, ['as' => 'drugs.api' ])->middleware('auth:sanctum');
+Route::resource('lab', LabController::class, ['as' => 'lab.api'])->middleware('auth:sanctum');
+Route::resource('room', RoomController::class, ['as' => 'room.api'])->middleware('auth:sanctum');
+Route::resource('diagnosis', DiagnosisController::class, ['as' => 'gianosis.api'])->middleware('auth:sanctum');
+Route::resource('service', ServiceController::class, ['as' => 'service.api'])->middleware('auth:sanctum');
+Route::resource('queue', QueueController::class, ['as' => 'queue.api'])->middleware('auth:sanctum');
+Route::resource('immunization', ImmunizationController::class, ['as' => 'imunization.api'])->middleware('auth:sanctum');
+Route::resource('familyplanning',FamilyplanningController::class, ['as' => 'familyplanning.api'])->middleware('auth:sanctum');
 
 //API route for register new user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
@@ -56,5 +56,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
 });
 
-// // Route Swagger
-// Route::get('/home', [HomeController::class, 'index']);
+// Route Swagger
+Route::get('/home', [HomeController::class, 'index']);

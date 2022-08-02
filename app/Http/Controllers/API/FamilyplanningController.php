@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 class FamilyplanningController extends Controller
 {
     /**
+     * @OA\SecurityScheme(
+     *      securityScheme="bearer_token",
+     *      type="http",
+     *      scheme="bearer",
+     *      bearerFormat="JWT",
+     * )
+     */
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

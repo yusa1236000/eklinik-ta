@@ -126,6 +126,26 @@
                         Data User
                     </a>
                 </li>
+
+                <li class="app-sidebar__heading">Manajemen Dokumentasi API</li>
+                <li>
+                    <a href="{{ route('documentation.index') }}" class="@if (Request::is('documentation*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                        Dokumentasi
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('parameter.index') }}" class="@if (Request::is('parameter*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                        Parameter
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('response.index') }}" class="@if (Request::is('response*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                        Response
+                    </a>
+                </li>
                 @endrole
                 @endrole
                 
@@ -150,7 +170,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('medicalrecord.index') }}" class="@if (Request::is('rekam-medis*')) mm-active @endif">
+                    <a href="{{ route('bpjs.index') }}" class="@if (Request::is('bpjs*')) mm-active @endif">
                         <i class="metismenu-icon fa fa-notes-medical"></i>
                         Data BPJS
                     </a>

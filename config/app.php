@@ -178,6 +178,9 @@ return [
         //swagger provider
         L5Swagger\L5SwaggerServiceProvider::class,
 
+        //infyom generator
+        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class, 
+
     ],
 
     /*

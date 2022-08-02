@@ -24,7 +24,7 @@
         <a href="{{route('pregnantmom.update', ['pregnantmom' => $pregnantmom->id])}}" class="btn text-warning">
             <i class="fa fa-edit fa-1x"></i>
         </a>
-        <a href="{{route('pregnantmom.show', ['pregnantmom' => $pregnantmom->id])}}" class="btn text-success">
+        <a href="{{route('pregnantmom.update', ['pregnantmom' => $pregnantmom->id])}}" class="btn text-success">
             <i class="fa fa-eye fa-1x"></i>
         </a>
     </td>

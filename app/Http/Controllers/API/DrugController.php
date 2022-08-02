@@ -8,6 +8,192 @@ use \App\Models\Drug;
 
 class DrugController extends Controller
 {
+
+
+    /**
+     * @OA\Get(
+     *      path="/api/drugs",
+     *      operationId="index",
+     *      tags={"Drug"},
+     *      summary="Get Semua Data Obat",
+     *      security={{ "bearer_token":{}}},
+     *      description="Get Semua Data Obat",
+     *      @OA\Response(
+     *        response=403,
+     *        description="Forbidden"
+     *     ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * )
+     */
+
+     /**
+     * @OA\Post(
+     *      path="/api/drugs",
+     *      operationId="storeDrug",
+     *      tags={"Drug"},
+     *      summary="Store new obat",
+     *      description="Returns drug data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="name",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="nik,",
+     *          description="nik",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *      )
+     * )
+     */
+
+     /**
+      * * @OA\Get(
+     *      path="/api/drugs/id",
+     *      operationId="getDrugsById",
+     *      tags={"Drug"},
+     *      summary="Get drug information",
+     *      description="Returns drug data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Drug id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Put(
+     *      path="/api/drugs/id",
+     *      operationId="updateDrug",
+     *      tags={"Drug"},
+     *      summary="Update existing drug",
+     *      description="Returns updated drug data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Drug id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=202,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Delete(
+     *      path="/api/drugs/id",
+     *      operationId="deleteDrug",
+     *      tags={"Drug"},
+     *      summary="Delete existing drug",
+     *      description="Deletes a record and returns no content",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Drug id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +204,9 @@ class DrugController extends Controller
         //
         $drugs = Drug::query()->get();
         if (count($drugs) == 0) {
-        return response()->json(["message" => "Obat Kosong"]);
+        return response()->json([
+            "message" => "Obat Kosong"
+        ]);
         }
         return response()->json($drugs);
     }
@@ -61,7 +249,11 @@ class DrugController extends Controller
      */
     public function show($id)
     {
-        //
+        $drug = Drug::where('id', $id)->first();
+        if (!$drug) {
+        return response()->json(["message" => "Obat tidak ditemukan"]);
+        }
+        return response()->json($drug);
     }
 
     /**
@@ -85,7 +277,7 @@ class DrugController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $drugs = Drug::find($id);
+        $drug = Drug::find($id);
 
         $request->validate([
             'nama' => 'required',
@@ -94,7 +286,7 @@ class DrugController extends Controller
             'harga' => 'required',
             'min_stok' => 'required'
         ]);
-        $drugs->update([
+        $drug->update([
             'nama' => $request->nama,
             'keterangan' => $request->keterangan,
             'stok' => $request->stok,
@@ -102,7 +294,7 @@ class DrugController extends Controller
             'min_stok' => $request->min_stok
         ]);
 
-        return response()->json($drugs);
+        return response()->json($drug);
     }
 
     /**

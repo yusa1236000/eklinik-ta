@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SelectController;
+use App\Http\Livewire\Documentation\AddParamAndRequest;
 use App\Http\Livewire\Drug\Create;
 use App\Http\Livewire\Drug\Index;
 use App\Http\Livewire\Lab\Create as LabCreate;
@@ -33,7 +34,11 @@ $list_menu = [
     'service' => 'layanan',
     'pregnantmom' => 'ibu-hamil',
     'familyplanning' => 'keluargaberencana',
-    'immunization' => 'imunisasi'
+    'immunization' => 'imunisasi',
+    'bpjs' => 'bpjs',
+    'documentation' => 'dokumentasi',
+    'parameter' => 'parameter',
+    'response' => 'response'
 ];
 
 
@@ -45,6 +50,7 @@ Route::middleware(['auth:web'])->group(function () use ($list_menu) {
         return view('welcome');
     })->name('home');
     Route::get('antrian/process/{queue}', \App\Http\Livewire\Queue\Process::class)->name('queue.process');
+    Route::get('documentation/add-params-and-request/{doc}', AddParamAndRequest::class)->name('doc.add-param');
     Route::get('antri/obat', \App\Http\Livewire\Queue\Drug::class)->name('queue.drug');
     Route::get('antri/obat/process/{queue}', \App\Http\Livewire\Drug\Process::class)->name('queue.drug.process');
 
@@ -68,6 +74,40 @@ Route::get('login', \App\Http\Livewire\Auth\Login::class)->name('login');
 Route::group(['prefix' => 'select'], function () {
     Route::get('doctor', [SelectController::class, 'doctor'])->name('select.doctor');
     Route::get('service', [SelectController::class, 'service'])->name('select.service');
+    Route::get('parameter', [SelectController::class, 'parameter'])->name('select.parameter');
+    Route::get('response', [SelectController::class, 'response'])->name('select.response');
 });
 
 // Route::get('/greet', 'UserController@greet');
+
+
+// Route generator
+Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')
+   ->name('io_generator_builder');
+Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')
+   ->name('io_field_template');
+Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')
+   ->name('io_relation_field_template');
+Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')
+   ->name('io_generator_builder_generate');
+Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')
+   ->name('io_generator_builder_rollback');
+Route::post('generator_builder/generate-from-file','\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile')
+   ->name('io_generator_builder_generate_from_file');
+
+
+   Route::get('/dokumentasi_api', [\App\Http\Controllers\DokumentasiController::class,'index']);
+
+// Route::get('/tab1', function() {
+//     return view('dokumentasi_api.index');
+// });
+
+// Route::get('/tab2', function() {
+//     return view('dokumentasi_api.index');
+// });
+// Route::get('/tab3', function() {
+//     return  view('dokumentasi_api.index');
+// });
+
+
+// Route::get('/app', [DokumentasiController::class, 'app']);

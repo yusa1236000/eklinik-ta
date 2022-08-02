@@ -9,6 +9,193 @@ use App\Models\Diagnosis;
 class DiagnosisController extends Controller
 {
     /**
+     * @OA\Get(
+     *      path="/api/diagnosis",
+     *      operationId="getDiagnosisList",
+     *      tags={"Diagnosis"},
+     *      summary="Get list of diagnosis",
+     *      description="Returns list of diagnosis",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+
+     /**
+     * @OA\Post(
+     *      path="/api/diagnosis",
+     *      operationId="storeDiagnosis",
+     *      tags={"Diagnosis"},
+     *      summary="Store new diagnosis",
+     *      description="Returns diagnosis data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="name",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="nik,",
+     *          description="nik",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *      )
+     * )
+     */
+
+     /**
+      * * @OA\Get(
+     *      path="/api/diagnosis/id",
+     *      operationId="getDiagnosisById",
+     *      tags={"Diagnosis"},
+     *      summary="Get diagnosis information",
+     *      description="Returns diagnosis data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="diagnosis id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Put(
+     *      path="/api/diagnosis/id",
+     *      operationId="updateDiagnosis",
+     *      tags={"Diagnosis"},
+     *      summary="Update existing diagnosis",
+     *      description="Returns updated diagnosis data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Diagnosis id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=202,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Delete(
+     *      path="/api/diagnosis/id",
+     *      operationId="deleteDiagnosis",
+     *      tags={"Diagnosis"},
+     *      summary="Delete existing diagnosis",
+     *      description="Deletes a record and returns no content",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Diagnosis id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -59,7 +246,11 @@ class DiagnosisController extends Controller
      */
     public function show($id)
     {
-        //
+        $diagnosis = Diagnosis::where('id', $id)->first();
+        if (!$diagnosis) {
+        return response()->json(["message" => "Data diagnosis tidak ditemukan"]);
+        }
+        return response()->json($diagnosis);
     }
 
     /**

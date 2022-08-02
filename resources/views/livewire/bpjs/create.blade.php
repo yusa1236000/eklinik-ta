@@ -1,4 +1,4 @@
-@section('meta_title', 'Pasien')
+@section('meta_title', 'Bpjs')
 @section('page_title', 'TAMBAH DATA BPJS')
 @section('page_title_icon')
     <i class="metismenu-icon fa fa-portrait"></i>

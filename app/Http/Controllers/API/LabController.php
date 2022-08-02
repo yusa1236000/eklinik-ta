@@ -10,6 +10,193 @@ use \App\Models\Lab;
 class LabController extends Controller
 {
     /**
+     * @OA\Get(
+     *      path="/api/lab",
+     *      operationId="getLabList",
+     *      tags={"Lab"},
+     *      summary="Get list of lab",
+     *      description="Returns list of lab",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
+
+     /**
+     * @OA\Post(
+     *      path="/api/lab",
+     *      operationId="storeLab",
+     *      tags={"Lab"},
+     *      summary="Store new lab",
+     *      description="Returns lab data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="name",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="nik,",
+     *          description="nik",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *      )
+     * )
+     */
+
+     /**
+      * * @OA\Get(
+     *      path="/api/lab/id",
+     *      operationId="getLabById",
+     *      tags={"Lab"},
+     *      summary="Get lab information",
+     *      description="Returns lab data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Lab id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Put(
+     *      path="/api/lab/id",
+     *      operationId="updateLab",
+     *      tags={"Lab"},
+     *      summary="Update existing lab",
+     *      description="Returns updated lab data",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Lab id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=202,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+     /**
+     * @OA\Delete(
+     *      path="/api/lab/id",
+     *      operationId="deleteLab",
+     *      tags={"Lab"},
+     *      summary="Delete existing lab",
+     *      description="Deletes a record and returns no content",
+     *      security={{ "bearer_token":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Lab id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,7 +247,11 @@ class LabController extends Controller
      */
     public function show($id)
     {
-        //
+        $lab = Lab::where('id', $id)->first();
+        if (!$lab) {
+        return response()->json(["message" => "Lab tidak ditemukan"]);
+        }
+        return response()->json($lab);
     }
 
     /**

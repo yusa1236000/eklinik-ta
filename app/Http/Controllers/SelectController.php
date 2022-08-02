@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Parameter;
+use App\Models\Response;
 
 class SelectController extends Controller
 {
@@ -33,4 +35,28 @@ class SelectController extends Controller
         return response()->json($data);
 
     }
+
+    public function parameter(Request $request){
+        $data = Parameter::all();
+        if($request->has('q')){
+            $search = $request->q;
+            $data = Parameter::select("id","name")
+            ->where('name','like',"%$search")
+            ->get();
+        }
+        return response()->json($data);
+    }
+
+    public function response(Request $request){
+        $data = Response::all();
+        if($request->has('q')){
+            $search = $request->q;
+            $data = Response::select("id","success")
+            ->where('success','like',"%$search")
+            ->get();
+        }
+        return response()->json($data);
+    }
+
+    
 }
