@@ -13,12 +13,8 @@ class DokumentasiController extends Controller
     public function index()
     {
          //get dokumentasi
-         $documentations = Documentation::all();
-         $parameter = Parameter::all();
-        //  return $parameter;
-        // dd($documentations);
-         //render view with dokumantasi
-         return view('dokumentasi_api.index', compact(['documentations', 'parameter']));
+         $documentations = Documentation::with('response', 'parameters')->get();
+         return view('dokumentasi_api.index', compact(['documentations']));
     }
 }
 

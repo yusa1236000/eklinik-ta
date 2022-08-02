@@ -46,7 +46,6 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Method</th>
                                         <th>Parameter</th>
                                         <th>Wajib</th>
                                         <th>Type</th>
@@ -54,9 +53,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($parameter as $item)
+                                    @foreach ($documentation->parameters as $item)
                                         <tr>
-                                            <td>{{ $documentation->method ?? '' }}</td>
+                                            {{-- <td>{{ $documentation->method ?? '' }}</td> --}}
                                             <td>{{ $item->name ?? '' }}</td>
                                             <td>{{ $item->is_required ?? '' }}</td>
                                             <td>{{ $item->type ?? '' }}</td>

@@ -12,12 +12,12 @@ class Response extends Model
     protected $fillable=[
         'success',
         'failed',
-        'description'
+        'description',
+        'documentation_id',
     ];
 
     public function documentation()
     {
-    //    return $this->belongsTo(Documentation::class);
-       return $this->hasMany(Documentation::class, 'response_id', 'id');
+       return $this->belongsTo(Documentation::class);
     }
 }
