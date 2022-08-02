@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Documentation;
 use App\Models\Documentation;
 use App\Models\Parameter;
 use Livewire\Component;
+use Livewire\Response;
 
 class AddParamAndRequest extends Component
 {
     public $doc;
     public $list_param = [];
+    public $response_data;
 
     protected $listeners = [
         "paramAdded",
@@ -18,18 +20,21 @@ class AddParamAndRequest extends Component
 
     public function paramAdded(Parameter $param)
     {
-        $this->list_param[] = $param;
-        $this->dispatchBrowserEvent('close-model', [
-            'id' => 'parameter-modal'
-        ]);
+        $this->redirectRoute('doc.add-param', $this->doc->id);
+    }
+
+    public function responseAdded(Response $response)
+    {
+        $this->response_data = $response;
     }
 
     public function mount(Documentation $doc){
         $this->doc = $doc;
+        $this->response_data = $doc->response;
         $this->list_param = $doc->parameters;
     }
 
-    public function createResponse(){
+        public function addResponse(){
         $this->dispatchBrowserEvent('show-model',[
             'id' => 'response-modal'
         ]);

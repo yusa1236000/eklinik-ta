@@ -1,6 +1,7 @@
 <?php
 
 use GrahamCampbell\ResultType\Success;
+use App\Models\Documentation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class CreateResponsesTable extends Migration
             $table->text('success');
             $table->text('failed');
             $table->text('description');
+            $table->foreignIdFor(Documentation::class);
             $table->timestamps();
         });
     }

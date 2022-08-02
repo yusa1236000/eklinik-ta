@@ -54,7 +54,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($parameter as $item)
+                                    @foreach ($documentation->parameters as $item)
                                         <tr>
                                             <td>{{ $documentation->method ?? '' }}</td>
                                             <td>{{ $item->name ?? '' }}</td>

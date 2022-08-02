@@ -5,7 +5,8 @@
         <div class="modal-content">
             <div class="card">
                 <div class="card-header">
-                    CREATE PRAMETER {{ $doc->id }}
+                    {{-- CREATE PRAMETER {{ $doc->id }} --}}
+                    CREATE PRAMETER
                 </div>
                 <div class="card-body row">
                     <div class='form-group col-md-6'>
