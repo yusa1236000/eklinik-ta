@@ -13,7 +13,11 @@ class Response extends Model
         'success',
         'failed',
         'description',
+<<<<<<< HEAD
         'documentation_id'
+=======
+        'documentation_id',
+>>>>>>> 5f3f6cf2d8d08af4ff972acf1c724d319b201cde
     ];
 
     public function documentation()
