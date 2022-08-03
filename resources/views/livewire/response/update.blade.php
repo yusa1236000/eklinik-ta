@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <div class="card">
             <form class="form-horizontal" wire:submit.prevent="update" enctype="multipart/form-data">
-                
+
                 <div class="card-body row">
                     <div class='form-group col-md-6'>
                         <label for='success' class='control-label'> {{ __('Sukses') }}</label>
@@ -29,7 +29,7 @@
                                class="form-control @error('description') is-invalid @enderror" id='description' autofocus placeholder="Keterangan">
                         @error('type')
                         <div class='invalid-feedback'>{{ $message }}</div> @enderror
-            
+
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-info">{{ __('Simpan Data') }}</button>

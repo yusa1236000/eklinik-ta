@@ -21,4 +21,14 @@ class Parameter extends Model
     {
         return $this->hasMany(Documentation::class, 'parameter_id', 'id');
     }
+
+
+    public function getIsRequiredAttribute($value)
+    {
+        return $value?"ya":"tidak";
+    }
+
+    protected $casts=[
+        'is_required'=>'string',
+    ];
 }

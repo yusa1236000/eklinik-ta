@@ -126,29 +126,31 @@
                         Data User
                     </a>
                 </li>
-
+                @endrole
+                @endrole
+                @role('dokumentasi')
                 <li class="app-sidebar__heading">Manajemen Dokumentasi API</li>
                 <li>
-                    <a href="{{ route('documentation.index') }}" class="@if (Request::is('documentation*')) mm-active @endif">
-                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                    <a href="{{ route('documentation.index') }}" class="@if (Request::is('dokumentasi*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-file-alt"></i>
                         Dokumentasi
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('parameter.index') }}" class="@if (Request::is('parameter*')) mm-active @endif">
-                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                        <i class="metismenu-icon fa fa-clipboard"></i>
                         Parameter
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('response.index') }}" class="@if (Request::is('response*')) mm-active @endif">
-                        <i class="metismenu-icon fa fa-notes-medical"></i>
+                        <i class="metismenu-icon fa fa-clipboard-list"></i>
                         Response
                     </a>
                 </li>
                 @endrole
-                @endrole
-                
+
+
                 @role('bidan')
                 <li class="app-sidebar__heading">Data Bidan</li>
                 <li>
