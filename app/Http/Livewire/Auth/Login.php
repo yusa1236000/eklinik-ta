@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -20,7 +21,11 @@ class Login extends Component
     {
         $data_credential = $this->validate();
         if (\Auth::attempt($data_credential, $this->keeplogin)) {
-            $this->redirectRoute('home');
+            if(Auth::user()->role =='pengguna'){
+                $this->redirectRoute('dokumentasi_api');
+            }else{
+                $this->redirectRoute('home');
+            }
         }else{
             $this->reset();
             $this->dispatchBrowserEvent('show-message', [

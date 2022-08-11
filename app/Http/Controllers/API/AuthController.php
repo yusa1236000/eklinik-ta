@@ -13,27 +13,27 @@ use Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+    // public function register(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:8',
+    //     ]);
 
-        // $request->password = Hash::make($request->password);
-        
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+    //     // $request->password = Hash::make($request->password);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password)
+    //     ]);
 
-        return response()
-            ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
-    }
+    //     $token = $user->createToken('auth_token')->plainTextToken;
+
+    //     return response()
+    //         ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
+    // }
 
     public function login(Request $request)
     {

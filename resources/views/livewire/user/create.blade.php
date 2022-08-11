@@ -32,6 +32,7 @@
                             <option value="dokter">Dokter</option>
                             <option value="staff">Staff</option>
                             <option value="apoteker">Apoteker</option>
+                            <option value="pengguna">pengguna</option>
                         </select>
                     </div>
                     <div class='form-group col-md-6'>

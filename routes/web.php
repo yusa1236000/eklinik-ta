@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SelectController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Documentation\AddParamAndRequest;
 use App\Http\Livewire\Drug\Create;
 use App\Http\Livewire\Drug\Index;
@@ -45,6 +46,8 @@ $list_menu = [
 Route::middleware(['auth:web'])->group(function () use ($list_menu) {
     Route::get('/show/{immunization}', \App\Http\Livewire\Immunization\Show::class)->name('immunization.show');
     Route::get('/show/{pregnantmom}', \App\Http\Livewire\Pregnantmom\Show::class)->name('pregnantmom.show');
+    Route::get('/dokumentasi_api', [\App\Http\Controllers\DokumentasiController::class,'index'])->name('dokumentasi_api');
+
 
     Route::get('/', function () {
         return view('welcome');
@@ -79,7 +82,7 @@ Route::group(['prefix' => 'select'], function () {
 });
 
 // Route::get('/greet', 'UserController@greet');
-
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
 // Route generator
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')
@@ -96,7 +99,6 @@ Route::post('generator_builder/generate-from-file','\InfyOm\GeneratorBuilder\Con
    ->name('io_generator_builder_generate_from_file');
 
 
-   Route::get('/dokumentasi_api', [\App\Http\Controllers\DokumentasiController::class,'index']);
 
 // Route::get('/tab1', function() {
 //     return view('dokumentasi_api.index');

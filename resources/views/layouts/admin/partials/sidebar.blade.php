@@ -150,6 +150,16 @@
                 </li>
                 @endrole
 
+                @role('pengguna')
+                {{-- <li class="app-sidebar__heading">Melihat Dokumentasi API</li>
+                <li>
+                    <a href="{{ route('documentation.index') }}" class="@if (Request::is('dokumentasi*')) mm-active @endif">
+                        <i class="metismenu-icon fa fa-file-alt"></i>
+                         Dokumentasi API
+                    </a>
+                </li> --}}
+                @endrole
+
 
                 @role('bidan')
                 <li class="app-sidebar__heading">Data Bidan</li>
