@@ -32,23 +32,23 @@ Route::middleware(['cors'])->get('/user', function (Request $request) {
 
 //ROUTE WEB SERVICE//
 
-Route::resource('patient', PatientController::class)->middleware('auth:sanctum', 'cors');
-Route::resource('doctors', DoctorController::class, ['as' => 'doctors.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('drugs', DrugController::class, ['as' => 'drugs.api' ])->middleware('auth:sanctum', 'cors');
-Route::resource('lab', LabController::class, ['as' => 'lab.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('room', RoomController::class, ['as' => 'room.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('diagnosis', DiagnosisController::class, ['as' => 'gianosis.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('service', ServiceController::class, ['as' => 'service.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('queue', QueueController::class, ['as' => 'queue.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('immunization', ImmunizationController::class, ['as' => 'imunization.api'])->middleware('auth:sanctum', 'cors');
-Route::resource('familyplanning',FamilyplanningController::class, ['as' => 'familyplanning.api'])->middleware('auth:sanctum', 'cors');
+Route::resource('patient', PatientController::class)->middleware('auth:sanctum');
+Route::resource('doctors', DoctorController::class, ['as' => 'doctors.api'])->middleware('auth:sanctum');
+Route::resource('drugs', DrugController::class, ['as' => 'drugs.api' ])->middleware('auth:sanctum');
+Route::resource('lab', LabController::class, ['as' => 'lab.api'])->middleware('auth:sanctum');
+Route::resource('room', RoomController::class, ['as' => 'room.api'])->middleware('auth:sanctum');
+Route::resource('diagnosis', DiagnosisController::class, ['as' => 'gianosis.api'])->middleware('auth:sanctum');
+Route::resource('service', ServiceController::class, ['as' => 'service.api'])->middleware('auth:sanctum');
+Route::resource('queue', QueueController::class, ['as' => 'queue.api'])->middleware('auth:sanctum');
+Route::resource('immunization', ImmunizationController::class, ['as' => 'imunization.api'])->middleware('auth:sanctum');
+Route::resource('familyplanning',FamilyplanningController::class, ['as' => 'familyplanning.api'])->middleware('auth:sanctum');
 
 //API route for register new user
 Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 //API route for login user
 Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
 //Protecting Routes
-Route::group(['middleware' => ['auth:sanctum', 'cors']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
     });
